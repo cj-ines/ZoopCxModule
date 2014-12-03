@@ -1,0 +1,148 @@
+<audio  id="mp3Player" class="" >
+	<source src="<?php echo $this->basePath()."/media/sample_audio.mp3" ?>" type="audio/mpeg">
+	<a href="<?php echo $this->basePath()."/media/sample_audio.mp3" ?>">Play</a>
+</audio>
+<div class="row">
+	<?php
+		foreach ($this->client_data as $contact) { ?>
+			<div class="col-md-4">
+				<div class="panel panel-default">
+					<div class="panel-body">
+						<div class="thumbnail hidden">
+							<img src="<?php echo $this->basePath().'/media/zoop-cx/avatar/'.$contact['Avatar']; ?>" class="img-rounded">
+						</div>
+						<div class="media">
+							<div class="pull-left media-left">
+								<img src="<?php echo $this->basePath().'/media/zoop-cx/avatar/'.$contact['Avatar']; ?>" class="img-rounded c-avatar c-avatar-lg">
+							</div>
+							<div class="media-body">
+								<div class="media-heading">
+									<h4 class="hidden"><?php echo $contact['Status'] == 1 ? '<span class="label label-success">Closed</span>' : '<span class="label label-warning">Open</span> ' ; ?></h4>
+									<h4>
+										<br>
+										<?php echo $contact['Client Name'] ?>
+										<br><small><span class="glyphicon glyphicon-time"></span> 2014-11-12 12:34 am</small>
+										<br><small><i class="fa fa-car"></i> <?php echo $contact['Vehicle'] ?></small>
+									</h4>
+								</div>
+							</div>
+						</div>
+					</div>
+					<div class="panel-body">
+						<div class="btn-group">
+							<button class="btn btn-lg col-md-4 btn-midas" id="playAudio" data-target="#playLabel-<?php echo $contact['id'] ?>">
+								<span class="fa fa-volume-up"></span> <span id="playLabel-<?php echo $contact['id'] ?>"> Play</span>
+							</button>
+							<button class="btn btn-lg col-md-4 btn-midas toggle-text" data-target="#complaint-<?php echo $contact['id'] ?>" data-enable="#call-<?php echo $contact['id'] ?>"> 
+								More
+							</button>
+							<button id="call-<?php echo $contact['id'] ?>" class="btn btn-lg col-md-4 btn-midas disabled">
+								<i class="fa fa-phone"></i> Call
+							</button>
+						</div>
+						<hr>
+						<blockquote>
+							<p class="c-complaint-text c-complaint-text-truncate" id="complaint-<?php echo $contact['id'] ?>">
+								<?php echo $contact['Complaint Details'] ?>
+							</p>
+						</blockquote>
+						
+					</div>
+					<div class="panel-body hidden">
+						<ul class="nav nav-tabs" role="tablist" id="tile-<?php echo $contact['id'] ?>" class="c-tile-tab">
+						  <li role="presentation" class="active">
+						  	<a href="#home-<?php echo $contact['id'] ?>" aria-controls="home-<?php echo $contact['id'] ?>" role="tab" data-toggle="tab">
+						  		<i class="glyphicon glyphicon-info-sign"></i>  <span class="hidden-xs hidden-sm">Detail</span>
+						  	</a>
+						  </li>
+						  <li role="presentation">
+						  	<a href="#comment-<?php echo $contact['id'] ?>" aria-controls="comment-<?php echo $contact['id'] ?>" role="tab" data-toggle="tab">
+						  		<i class="fa fa-comments-o"></i> <span class="hidden-xs hidden-sm">Comments</span>
+						  	</a>
+						  </li>
+						  <li role="presentation">
+						  	<a href="#actions-<?php echo $contact['id'] ?>" aria-controls="actions-<?php echo $contact['id'] ?>" role="tab" data-toggle="tab">
+						  		<i class="glyphicon glyphicon-ok-sign"></i> <span class="hidden-xs hidden-sm">Resolve</span>
+						  	</a>
+						  </li>
+
+						</ul>
+						<div class="tab-content c-tab-content">
+						  <div role="tabpanel" class="tab-pane  fade in active" id="home-<?php echo $contact['id'] ?>">
+						  		<h4>Listen to Audio</h4>
+							  	<audio controls>
+								  <source src="<?php echo $this->basePath()."/media/sample_audio.mp3" ?>" type="audio/mpeg">
+								  <a href="<?php echo $this->basePath()."/media/sample_audio.mp3" ?>">Play</a>
+								</audio>
+								<h4>Summary</h4>
+								<p class="c-complaint-text">
+									<?php echo $contact['Complaint Details'] ?>
+								</p>
+								<a href="javascript:void()" data-toggle="modal" data-target="#fullComment-<?php echo $contact['id']; ?>">Show All</a>
+						  </div>
+						  <div role="tabpanel" class="tab-pane fade " id="comment-<?php echo $contact['id'] ?>">
+						  	<h4>Comments</h4>
+						  	<div class="c-comment-thread">
+						  	<?php
+						  		foreach ($contact['Comments'] as $comment) {
+						  			//echo '<strong>' .$comment['name'] . '</strong>: ' .$comment['comment_text'] . '<br>';
+						  			?>
+						  			<div class="media">
+						  				<a class="pull-left">
+							  				<img src="<?php echo $this->basePath().'/media/zoop-cx/avatar/male-placeholder.png'; ?>" class="img-rounded c-avatar c-avatar-sm" >
+							  			</a>
+						  				<div class="media-body">
+							  				
+						  					<h5 class="media-heading"><a><?php echo $comment['name'] ?></a> <small><?php echo $comment['timestamp'] ?></small></h5>
+						  					<?php echo $comment['comment_text']; ?>
+						  				</div>
+						  			</div>
+						  			<?php
+						  		}
+						  	?>
+						  	</div>
+						  	<button class="btn btn-default btn-xs">Add Comment</button>
+						  </div>
+						  <div role="tabpanel" class="tab-pane  fade active" id="actions-<?php echo $contact['id'] ?>">
+						  	<h4>What did you do to resolve this?</h4>
+							  	<a class="btn btn-midas c-tooltip" data-toggle="tooltip" title="Offered refund" data-placement="bottom">
+							  		<img src="<?php echo $this->basePath().'/media/zoop-cx/icons/action_refund.png' ?>">
+							  	</a>
+							  	<a class="btn btn-midas c-tooltip" data-toggle="tooltip" title="Offered discount" data-placement="bottom">
+							  		<img src="<?php echo $this->basePath().'/media/zoop-cx/icons/action_discount.png' ?>">
+							  	</a>
+							  	<a class="btn btn-midas c-tooltip" data-toggle="tooltip" title="Replaced parts" data-placement="bottom">
+							  		<img src="<?php echo $this->basePath().'/media/zoop-cx/icons/action_replace.png' ?>">
+							  	</a>
+							  	<a class="btn btn-midas c-tooltip" data-toggle="tooltip" title="Gave explanation" data-placement="bottom">
+							  		<img src="<?php echo $this->basePath().'/media/zoop-cx/icons/action_explain.png' ?>">
+							  	</a>
+						  </div>
+						</div>
+					</div>
+				</div>
+			</div>
+
+
+			<div class="modal fade" id="fullComment-<?php echo $contact['id']; ?>" tabindex="-1" role="dialog">
+				<div class="modal-dialog modal-lg">
+					<div class="modal-content">
+						<div class="modal-header">
+							 <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+							<h4>Complaint</h4>
+						</div>
+						<div class="modal-body">
+							<blockquote><p><?php echo $contact['Complaint Details'] ?></p></blockquote>
+						</div>
+					</div>
+				</div>
+			</div>
+
+	<?php
+		}
+	?>
+</div>
+
+
+
+
