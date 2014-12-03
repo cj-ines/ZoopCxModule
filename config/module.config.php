@@ -5,6 +5,7 @@ return array(
         'invokables' => array(
             'ZoopCxModule\Controller\Index' => 'ZoopCxModule\Controller\IndexController',
             'ZoopCxModule\Controller\Notification' => 'ZoopCxModule\Controller\NotificationController',
+        	'ZoopCxModule\Controller\Dashboard' => 'ZoopCxModule\Controller\DashboardController',
         ),
     ),
     'router' => array(
@@ -37,6 +38,20 @@ return array(
                             ),
                         ),
                     ),
+                	'dashboard-interface' => array(
+                		'type' => 'Segment',
+                		'options' => array(
+                			'route' => 'cx/dashboard[/:action]',
+                			'constraints' => array(
+                				'action' => '[a-zA-Z][a-zA-Z0-9_-]*',
+                			),
+                			'defaults' => array(
+                				'controller' => 'dashboard',
+                				'action' => 'index',
+                			),
+                		),
+                	),
+                		
                     // This route is a sane default when developing a module;
                     // as you solidify the routes for your module, however,
                     // you may want to remove it and replace it with more

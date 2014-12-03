@@ -6,7 +6,7 @@
 				<source src="<?php echo $this->basePath()."/media/zoop-cx/audio/".$contact['Audio'] ?>" type="audio/mpeg">
 				<a href="<?php echo $this->basePath()."/media/zoop-cx/audio/".$contact['Audio'] ?>">Play</a>
 			</audio>
-			<div class="col-md-6">
+			<div class="col-md-6 col-sm-12">
 				<div class="panel panel-default">
 					<div class="panel-body">
 						<div class="media">
@@ -34,11 +34,12 @@
 						</div>
 					</div>
 					<div class="panel-body">
-						<div class="btn-group tabs">
+						<div class="btn-group tabs btn-group-justified">
 							<a	class="btn btn-lg btn-midas play-mp3" 
 								id="playAudio-<?php echo $contact['id'] ?>"
 								data-target="<?php echo $contact['id'] ?>"
 							/>
+								<i class="fa fa-volume-down"></i>
 								<span id="playLabel-<?php echo $contact['id'] ?>"> Play</span>
 							</a>
 							<a class="btn btn-lg btn-midas toggle-text tab-control"
@@ -46,7 +47,8 @@
 								data-enable="#call-<?php echo $contact['id'] ?>"
 								data-tab="#commentAction-<?php echo $contact['id'] ?>"
 							/> 
-								More
+								<i class="fa fa-comment"></i>
+								<span>More</span>
 							</a>
 							<a id="call-<?php echo $contact['id'] ?>"
 								class="btn btn-lg btn-call btn-midas btn-disabled disabled <?php echo $contact['flag'] == 1 ? 'hidden' : ''; ?> tab-control"

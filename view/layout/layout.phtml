@@ -44,7 +44,7 @@
                         <span class="icon-bar"></span>
                         <span class="icon-bar"></span>
                     </button>
-                    <a class="navbar-brand" href="<?php echo $this->url('cx/notification-interface') ?>"><img src="<?php echo $this->basePath() . '/img/brand.png' ?>" class="c-brand" ?>&nbsp;</a>
+                    <a class="navbar-brand" href="<?php echo $this->url('cx/notification-interface') ?>"><img src="<?php echo $this->basePath() . '/img/brand.png' ?>" class="c-brand" ?></a>
                     <p class="navbar-text hidden">
                         <span class="fa fa-frown-o"></span>
                         <a href="<?php echo $this->url('cx/notification-interface',array('action' => 'red-flag')); ?>">
@@ -67,13 +67,16 @@
 
             </div>
         </nav>
-        <div class="container">
+        <div class="container-fluids">
             <?php echo $this->content; ?>
             <hr>
+        </div>
+        <div class="container">
             <footer>
                 <p>&copy; 2005 - <?php echo date('Y') ?> by ZOOP. <?php echo $this->translate('All rights reserved.') ?></p>
             </footer>
         </div> <!-- /container -->
+        
         <?php echo $this->inlineScript() ?>
     </body>
 </html>
