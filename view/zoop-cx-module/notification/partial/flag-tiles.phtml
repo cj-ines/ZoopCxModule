@@ -1,10 +1,7 @@
 <div class="row">
 	<?php
 		foreach ($this->client_data as $contact) { ?>
-			<audio  id="mp3Player-<?php echo $contact['id'] ?>" class="" >
-				<source src="<?php echo $this->basePath()."/media/zoop-cx/audio/".$contact['Audio'] ?>" type="audio/mpeg">
-				<a href="<?php echo $this->basePath()."/media/zoop-cx/audio/".$contact['Audio'] ?>">Play</a>
-			</audio>
+
 			<div class="col-md-6 col-sm-12">
 				<div class="panel panel-default">
 					<div class="panel-body">
@@ -29,6 +26,10 @@
 						</div>
 					</div>
 					<div class="panel-body">
+                        <audio  id="mp3Player-<?php echo $contact['id'] ?>" class="" >
+                            <source src="<?php echo $this->basePath()."/media/zoop-cx/audio/".$contact['Audio'] ?>" type="audio/mpeg">
+                            Your browser does not support audio playback. Please <a href="<?php echo $this->basePath()."/media/zoop-cx/audio/".$contact['Audio'] ?>">Download Audio</a>
+                        </audio>
 						<div class="btn-group tabs btn-group-justified">
 							<a	class="btn btn-lg btn-midas play-mp3" 
 								id="playAudio-<?php echo $contact['id'] ?>"
