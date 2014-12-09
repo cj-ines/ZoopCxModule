@@ -10,17 +10,20 @@ class DashboardController extends AbstractActionController
 	{
 		$view = new ViewModel();
 		
-		$partNotification = new ViewModel();
-		$partNotification->setTemplate('zoop-cx-module/dashboard/partial/notification.phtml');
+		$partGoals = new ViewModel();
+		$partGoals->setTemplate('zoop-cx-module/dashboard/partial/goal.phtml');
 		
 		$partScore = new ViewModel();
 		$partScore->setTemplate('zoop-cx-module/dashboard/partial/score.phtml');
 
+		$partMeetings = new ViewModel();
+		$partMeetings->setTemplate('zoop-cx-module/dashboard/partial/meeting.phtml');
+
 		$partRating = new ViewModel();
 		$partRating->setTemplate('zoop-cx-module/dashboard/partial/rating.phtml');
 		
-		$view->addChild($partNotification,'partNotification')
-			->addChild($partScore,'partScore')
+		$view->addChild($partGoals,'partGoals')
+			->addChild($partMeetings,'partMeetings')
 			->addChild($partRating,'partRating')
 		;
 		return $view;
